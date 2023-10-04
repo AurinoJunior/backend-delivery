@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
 import { verify } from 'jsonwebtoken'
 
-export async function ensureAuthenticateClient(
+export async function ensureAuthenticateDeliveryman(
   req: Request,
   res: Response,
   next: NextFunction,
@@ -16,9 +16,9 @@ export async function ensureAuthenticateClient(
 
   const token = authHeader.split(' ')[1]
   try {
-    const { sub } = verify(token, process.env.CLIENT_AUTH_SECRET as string)
+    const { sub } = verify(token, process.env.DELIVERYMAN_AUTH_SECRET as string)
 
-    req.idClient = String(sub)
+    req.idDeliveryman = String(sub)
 
     return next()
   } catch (err) {

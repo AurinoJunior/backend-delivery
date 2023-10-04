@@ -25,7 +25,7 @@ export class AuthenticateClientUseCase {
       {
         username,
       },
-      '58344f3102f4aef1045e627bf5040d15',
+      process.env.CLIENT_AUTH_SECRET as string,
       {
         subject: client.id,
         expiresIn: '1d',
