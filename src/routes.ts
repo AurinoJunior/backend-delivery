@@ -9,6 +9,7 @@ import { ensureAuthenticateClient } from './middlewares/ensure-authenticate-clie
 import { ensureAuthenticateDeliveryman } from './middlewares/ensure-authenticate-deliveryman'
 import { updateDeliverymanController } from './modules/deliveries/controllers/update-deliveryman'
 import { findAllDeliveriesController } from './modules/client/controllers/find-all-deliveries'
+import { findAllDeliveriesByIdController } from './modules/deliveryman/controllers/find-all-deliveries-by-id'
 
 export const routes = Router()
 
@@ -22,6 +23,11 @@ routes.get(
 
 routes.post('/deliveryman', createDeliverymanController.handle)
 routes.post('/deliveryman/auth', authenticateDeliverymanController.handle)
+routes.get(
+  '/deliveryman/deliveries',
+  ensureAuthenticateDeliveryman,
+  findAllDeliveriesByIdController.handle,
+)
 
 routes.post(
   '/delivery',
