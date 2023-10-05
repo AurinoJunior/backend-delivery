@@ -41,6 +41,8 @@ Api de entregas que conceta clientes com entregadores, modulo bonus do bootcamp 
 
 ## :beers: Como usar
 
+Na raiz do projeto está o arquivo `Insomnia.json` para executar as rotas do projeto.
+
 ## :page_with_curl: Licença
 
 MIT

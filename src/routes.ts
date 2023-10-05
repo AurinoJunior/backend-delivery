@@ -1,15 +1,24 @@
 import { Router } from 'express'
+
+// Client
 import { createClientController } from './modules/client/controllers/create-client'
 import { authenticateClientController } from './modules/client/controllers/authenticate'
+import { findAllDeliveriesController } from './modules/client/controllers/find-all-deliveries'
+
+// Deliveryman
 import { createDeliverymanController } from './modules/deliveryman/controllers/create-deliveryman'
 import { authenticateDeliverymanController } from './modules/deliveryman/controllers/authenticate'
+import { findAllDeliveriesByIdController } from './modules/deliveryman/controllers/find-all-deliveries-by-id'
+
+// Deliveries
 import { createDeliveryController } from './modules/deliveries/controllers/create-delivery'
 import { findAllAvailableController } from './modules/deliveries/controllers/find-all-available'
+import { updateDeliverymanController } from './modules/deliveries/controllers/update-deliveryman'
+import { finishingDeliveryController } from './modules/deliveries/controllers/finshing-delivery'
+
+// Middlewares
 import { ensureAuthenticateClient } from './middlewares/ensure-authenticate-clients'
 import { ensureAuthenticateDeliveryman } from './middlewares/ensure-authenticate-deliveryman'
-import { updateDeliverymanController } from './modules/deliveries/controllers/update-deliveryman'
-import { findAllDeliveriesController } from './modules/client/controllers/find-all-deliveries'
-import { findAllDeliveriesByIdController } from './modules/deliveryman/controllers/find-all-deliveries-by-id'
 
 export const routes = Router()
 
@@ -43,4 +52,9 @@ routes.put(
   '/delivery/update/:idDelivery',
   ensureAuthenticateDeliveryman,
   updateDeliverymanController.handle,
+)
+routes.put(
+  '/delivery/finishing/:idDelivery',
+  ensureAuthenticateDeliveryman,
+  finishingDeliveryController.handle,
 )
